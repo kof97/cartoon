@@ -1,14 +1,33 @@
+<meta name="referrer" content="no-referrer">
+
+<div id="cartoon" style="list-style: none">
+	
+</div>
+
 <script src="https://i.gtimg.cn/qzone/biz/gdt/lib/jquery/jquery-2.1.4.js" type="text/javascript"></script>
 <script type="text/javascript">
-	let url = 'http://hhzapi.ishuhui.com/cartoon/post/ver/76906890/id/9083.json';
+	let url = 'http://hhzapi.ishuhui.com/cartoon/post/ver/76906890/id/9055.json';
 
 	$.get(url, function (res) {
-		$.ajax({
-			url: "http://localhost/spider/spider.php",
-			data: { "json": res }
-		}).done(function(data) {
-			console.log(data);
-		});
+		let title = res.data.title,
+			book = res.data.book_text,
+			number = res.data.number,
+			img_list = JSON.parse(res.data.content_img);
+
+		let uri = [
+			'http://pic01.ishuhui.com/',
+			'http://pic02.ishuhui.com/',
+			'http://pic03.ishuhui.com/',
+			'http://pic04.ishuhui.com/'
+		];
+
+		let cartoon = $('#cartoon');
+		for (let i in img_list) {
+			let url = uri[Math.floor(Math.random() * 4)] + img_list[i].substr(8);
+
+			cartoon.append('<li><img src="' + url + '" /></li>');
+		}
+
 	});
 
 </script>
