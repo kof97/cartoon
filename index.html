@@ -1,13 +1,8 @@
 <meta name="referrer" content="no-referrer">
-
-<div id="cartoon" style="list-style: none">
-	
-</div>
-
+<div id="cartoon" style="list-style: none"></div>
 <script src="https://i.gtimg.cn/qzone/biz/gdt/lib/jquery/jquery-2.1.4.js" type="text/javascript"></script>
 <script type="text/javascript">
 	let url = 'http://hhzapi.ishuhui.com/cartoon/post/ver/76906890/id/9055.json';
-
 	$.get(url, function (res) {
 		let title = res.data.title,
 			book = res.data.book_text,
@@ -24,7 +19,6 @@
 		let cartoon = $('#cartoon');
 		for (let i in img_list) {
 			let url = uri[Math.floor(Math.random() * 4)] + img_list[i].substr(8);
-
 			cartoon.append('<li><img src="' + url + '" /></li>');
 		}
 
