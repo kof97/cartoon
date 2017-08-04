@@ -26,7 +26,7 @@ foreach ($img_list as $num => $value) {
 	$img = file_get_contents($img_url);
 
 
-	file_put_contents('./aaa.png', $img);die;
+	file_put_contents('./source/aaa.png', $img);die;
 }
 
 // end of script
