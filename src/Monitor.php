@@ -33,6 +33,11 @@ class Monitor {
 
 		$uri = self::$shuhui;
 
+		if (!isset($json['data'])) {
+			var_dump($url);
+			return;
+		}
+
 		$title = $json['data']['title'];
 		$book = $json['data']['book_text'];
 		$number = $json['data']['number'];
