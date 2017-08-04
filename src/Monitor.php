@@ -42,25 +42,28 @@ class Monitor {
 
 		$img_list = json_decode($json['data']['content_img'], true);
 		foreach ($img_list as $num => $value) {
-			$img_url = $uri[mt_rand(0, count($uri) - 1)] . substr($value, 8);
-
-			$img = file_get_contents($img_url);
-
 			$total_path = $path . $number . '-' . $num;
+
+			if (is_file($total_path)) {
+				continue;
+			}
+
+			$img_url = $uri[mt_rand(0, count($uri) - 1)] . substr($value, 8);
+			$img = file_get_contents($img_url);
 
 			self::getImg($total_path, $img);
 		}
 	}
 
 	protected static function getImg($file, $img) {
-		file_put_contents($file, $img);
+		if (!is_file($file)) {
+			file_put_contents($file, $img);
+		}
 	}
 
 	protected static function makeDir($path) {
 		if (realpath($path) === false) {
 			$p = substr($path, 0, strrpos($path, DIRECTORY_SEPARATOR));
-
-			var_dump($p);
 
 			self::makeDir($p);
 		}
