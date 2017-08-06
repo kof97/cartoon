@@ -1,2 +1,6 @@
 
 source/*
+
+error.log
+
+log/*

@@ -5,7 +5,7 @@ require 'src/loader.php';
 /**
  * 9082 9091
  *
- * @var 0
+ * @var 1000
  * @return 9131
  */
 
@@ -14,7 +14,7 @@ require 'src/loader.php';
 src\Monitor::$time = microtime(true);
 
 $start = 0;
-$end   = 1000;
+$end   = 200;
 
 // $arr = array(
 // 	7332, 7331

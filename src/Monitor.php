@@ -11,6 +11,8 @@ namespace src;
  */
 class Monitor {
 
+	public static $time;
+
 	protected static $root = './';
 
 	protected static $source = DIRECTORY_SEPARATOR . 'source' . DIRECTORY_SEPARATOR;
@@ -34,7 +36,8 @@ class Monitor {
 		$uri = self::$shuhui;
 
 		if (!isset($json['data'])) {
-			var_dump($url);
+			$log_file = './log/error-' . self::$time . '.log';
+			file_put_contents($log_file, date('Y-m-d H:i:s') . ' - ' . $url . PHP_EOL, FILE_APPEND);
 			return;
 		}
 
@@ -46,10 +49,14 @@ class Monitor {
 		self::makeDir($path);
 
 		$img_list = json_decode($json['data']['content_img'], true);
+		if (empty($img_list)) {
+			return;
+		}
+
 		foreach ($img_list as $num => $value) {
 			$total_path = $path . $number . '-' . $num;
 
-			if (is_file($total_path)) {
+			if (is_file($total_path) && filesize($total_path) > 1000) {
 				continue;
 			}
 
