@@ -36,6 +36,7 @@ class Monitor {
 		$uri = self::$shuhui;
 
 		if (!isset($json['data'])) {
+			is_dir('./log') || mkdir('./log');
 			$log_file = './log/error-' . self::$time . '.log';
 			file_put_contents($log_file, date('Y-m-d H:i:s') . ' - ' . $url . PHP_EOL, FILE_APPEND);
 			return;

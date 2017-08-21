@@ -13,8 +13,8 @@ require 'src/loader.php';
 
 src\Monitor::$time = microtime(true);
 
-$start = 0;
-$end   = 1000;
+$start = 9131;
+$end   = 9168;
 
 // $arr = array(
 // 	7332, 7331
