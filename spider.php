@@ -13,8 +13,8 @@ require 'src/loader.php';
 
 src\Monitor::$time = microtime(true);
 
-$start = 9131;
-$end   = 9168;
+$start = 11182;
+$end   = 11182;
 
 // $arr = array(
 // 	7332, 7331
@@ -28,7 +28,7 @@ $end   = 9168;
 // die();
 
 for ($i = $start; $i <= $end; $i++) {
-	$url = 'http://hhzapi.ishuhui.com/cartoon/post/ver/76906890/id/' . $i . '.json';
+	$url = 'https://prod-api.ishuhui.com/comics/detail?id=' . $i;
 	run($url, $i);
 }
 

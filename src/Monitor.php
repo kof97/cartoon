@@ -43,25 +43,28 @@ class Monitor {
 		}
 
 		$title = $json['data']['title'];
-		$book = $json['data']['book_text'];
-		$number = $json['data']['number'];
+		$book = $json['data']['animeName'];
+		$number = $json['data']['numberStart'];
+
+		$book = md5($book);
 
 		$path = realpath(self::$root) . self::$source . $book . DIRECTORY_SEPARATOR . $number . DIRECTORY_SEPARATOR;
 		self::makeDir($path);
 
-		$img_list = json_decode($json['data']['content_img'], true);
+		$img_list = $json['data']['contentImg'];
 		if (empty($img_list)) {
 			return;
 		}
 
 		foreach ($img_list as $num => $value) {
-			$total_path = $path . $number . '-' . $num;
+			$total_path = $path . $number . '-' . $value['name'];
 
 			if (is_file($total_path) && filesize($total_path) > 1000) {
 				continue;
 			}
 
-			$img_url = $uri[mt_rand(0, count($uri) - 1)] . substr($value, 8);
+			// $img_url = $uri[mt_rand(0, count($uri) - 1)] . substr($value, 8);
+			$img_url = $value['url'];
 			$img = file_get_contents($img_url);
 
 			self::getImg($total_path, $img);
